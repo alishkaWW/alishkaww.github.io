@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Страница не найдена</title>
+<script>
+  // /tophair/prices -> /tophair/?p=/prices, which that site's index.html turns back into /tophair/prices.
+  (function (l) {
+    var parts = l.pathname.split("/"), site = parts[1];
+    if (!site || /[?&]p=/.test(l.search)) return;   // nothing to forward to, or already tried
+    var rest = parts.slice(2).join("/");
+    l.replace("/" + site + "/?p=/" + rest + (l.search ? "&" + l.search.slice(1) : "") + l.hash);
+  })(location);
+</script>
+<style>body{font:16px/1.5 system-ui,sans-serif;margin:0;padding:40px 16px;background:#f6f6f4;color:#151515}</style>
+</head>
+<body><p>Страница не найдена.</p></body>
+</html>
