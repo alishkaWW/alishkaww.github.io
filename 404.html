@@ -7,6 +7,8 @@
 <script>
   // /tophair/prices -> /tophair/?p=/prices, which that site's index.html turns back into /tophair/prices.
   (function (l) {
+    // /TopHair/ -> /tophair/: every published path is lowercase
+    if (l.pathname !== l.pathname.toLowerCase()) { l.replace(l.pathname.toLowerCase() + l.search + l.hash); return; }
     var parts = l.pathname.split("/"), site = parts[1];
     if (!site || /[?&]p=/.test(l.search)) return;   // nothing to forward to, or already tried
     var rest = parts.slice(2).join("/");
